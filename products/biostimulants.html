@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biostimulants Products - Kriya</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Material Symbols -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Premium Color Palette */
+            --primary-green: #2A4E35;
+            --secondary-orange: #C45A2A;
+            --accent-gold: #B89B5C;
+            --dark-gray: #1A1A1A;
+            --medium-gray: #4A4A4A;
+            --light-gray: #F5F5F5;
+            --white: #FFFFFF;
+            
+            /* Typography */
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Inter', sans-serif;
+            
+            /* Spacing */
+            --section-padding: 5rem 0;
+            --container-max-width: 1200px;
+            
+            /* Transitions */
+            --transition-fast: 0.2s ease;
+            --transition-normal: 0.3s ease;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-weight: 400;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background-color: var(--white);
+            padding-top: 80px;
+        }
+
+        .container {
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--white);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo .logo-img {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            transition: var(--transition-fast);
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--secondary-orange);
+        }
+
+        .nav-toggle {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 2rem 0 1rem;
+            background: var(--light-gray);
+        }
+
+        .breadcrumb-links {
+            display: flex;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb-links a {
+            color: var(--medium-gray);
+            text-decoration: none;
+        }
+
+        .breadcrumb-links a:hover {
+            color: var(--primary-green);
+        }
+
+        .breadcrumb-links span {
+            color: var(--primary-green);
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 3rem 0;
+            text-align: center;
+            background: linear-gradient(135deg, var(--light-gray) 0%, var(--white) 100%);
+        }
+
+        .page-title {
+            font-size: 3rem;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+
+        .page-description {
+            font-size: 1.1rem;
+            color: var(--medium-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Brands Grid */
+        .brands-section {
+            padding: var(--section-padding);
+        }
+
+        .brands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .brand-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: var(--transition-normal);
+            text-align: center;
+            border-left: 4px solid var(--accent-gold);
+        }
+
+        .brand-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .brand-name {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .brand-description {
+            color: var(--medium-gray);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 0.5rem;
+            background: var(--light-gray);
+            border-radius: 4px;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .brand-link {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary-green);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 6px;
+            transition: var(--transition-normal);
+            font-weight: 500;
+        }
+
+        .brand-link:hover {
+            background: var(--secondary-orange);
+            transform: translateY(-2px);
+        }
+
+        /* Footer Styles */
+        .footer {
+            background: var(--dark-gray);
+            color: var(--white);
+            padding: 3rem 0 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-disclaimer {
+            text-align: center;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .footer-disclaimer strong {
+            color: var(--accent-gold);
+        }
+
+        .footer-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-links, .footer-contact {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a, .footer-contact a {
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+
+        .footer-links a:hover, .footer-contact a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social a {
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+
+        .footer-social a:hover {
+            color: var(--accent-gold);
+            transform: translateY(-2px);
+        }
+
+        .footer-legal {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .legal-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .legal-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition-fast);
+        }
+
+        .legal-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .copyright {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .nav-toggle {
+                display: block;
+            }
+            
+            .page-title {
+                font-size: 2.5rem;
+            }
+            
+            .brands-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-main {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-links, .footer-contact {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Mobile Navigation */
+        @media (max-width: 768px) {
+            .nav-menu.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <img src="../assets/img/logo.png" alt="Kriya" class="logo-img">
+            </a>
+            
+            <div class="nav-menu" id="nav-menu">
+                <div class="nav-item">
+                    <a href="../index.html" class="nav-link">Home</a>
+                </div>
+                <div class="nav-item">
+                    <a href="../about.html" class="nav-link">About</a>
+                </div>
+                <div class="nav-item">
+                    <a href="biocontrol.html" class="nav-link">Biocontrol</a>
+                </div>
+                <div class="nav-item">
+                    <a href="biostimulants.html" class="nav-link active">Biostimulants</a>
+                </div>
+                <div class="nav-item">
+                    <a href="substrates.html" class="nav-link">Substrates</a>
+                </div>
+                <div class="nav-item">
+                    <a href="home-garden.html" class="nav-link">Home & Garden</a>
+                </div>
+                <div class="nav-item">
+                    <a href="../technology/" class="nav-link">Technology</a>
+                </div>
+                <div class="nav-item">
+                    <a href="../contract-manufacturing.html" class="nav-link">Contract Manufacturing</a>
+                </div>
+                <div class="nav-item">
+                    <a href="../contact.html" class="nav-link">Contact</a>
+                </div>
+            </div>
+            
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="material-symbols-outlined">menu</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-links">
+                <a href="../index.html">Home</a>
+                <span>></span>
+                <a href="../products/">Products</a>
+                <span>></span>
+                <span>Biostimulants</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">Biostimulants Products</h1>
+            <p class="page-description">
+                Enhance plant growth, productivity, and stress resistance with our advanced 
+                biostimulant formulations. Natural solutions for healthier, more resilient crops.
+            </p>
+        </div>
+    </section>
+
+    <!-- Brands Grid Section -->
+    <section class="brands-section">
+        <div class="container">
+            <div class="brands-grid">
+                <!-- IGreen -->
+                <div class="brand-card">
+                    <h3 class="brand-name">IGreen</h3>
+                    <div class="brand-description">Consortium of Bacteria</div>
+                    <a href="biostimulants/igreen.html" class="brand-link">View Product Details</a>
+                </div>
+                
+                <!-- Zenita -->
+                <div class="brand-card">
+                    <h3 class="brand-name">Zenita</h3>
+                    <div class="brand-description">Neem Limonoids based PGP</div>
+                    <a href="biostimulants/zenita.html" class="brand-link">View Product Details</a>
+                </div>
+                
+                <!-- Cropsia -->
+                <div class="brand-card">
+                    <h3 class="brand-name">Cropsia</h3>
+                    <div class="brand-description">Plant Extract based PGP</div>
+                    <a href="biostimulants/cropsia.html" class="brand-link">View Product Details</a>
+                </div>
+                
+                <!-- Enrhize -->
+                <div class="brand-card">
+                    <h3 class="brand-name">Enrhize</h3>
+                    <div class="brand-description">Arbuscular Mycorrhizal</div>
+                    <a href="biostimulants/enrhize.html" class="brand-link">View Product Details</a>
+                </div>
+                
+                <!-- Orgocare -->
+                <div class="brand-card">
+                    <h3 class="brand-name">Orgocare</h3>
+                    <div class="brand-description">Plant based Stress Management</div>
+                    <a href="biostimulants/orgocare.html" class="brand-link">View Product Details</a>
+                </div>
+                
+                <!-- Blooma -->
+                <div class="brand-card">
+                    <h3 class="brand-name">Blooma</h3>
+                    <div class="brand-description">Seaweed based PGP</div>
+                    <a href="biostimulants/blooma.html" class="brand-link">View Product Details</a>
+                </div>
+                
+                <!-- Envicta -->
+                <div class="brand-card">
+                    <h3 class="brand-name">Envicta</h3>
+                    <div class="brand-description">Humic based PGP</div>
+                    <a href="biostimulants/envicta.html" class="brand-link">View Product Details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-disclaimer">
+                    <p><strong>Usage Disclaimer:</strong> Always follow label instructions and dosage recommendations. Contact us for specific usage guidance.</p>
+                </div>
+                
+                <div class="footer-main">
+                    <div class="footer-links">
+                        <a href="../about.html">About</a>
+                        <a href="../products/">Products</a>
+                        <a href="../technology/">Technology</a>
+                        <a href="../contact.html">Contact</a>
+                    </div>
+                    
+                    <div class="footer-contact">
+                        <a href="mailto:info@kriya.ltd">info@kriya.ltd</a>
+                        <a href="https://wa.me/916385848466">+91 6385848466</a>
+                    </div>
+                    
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/company/108402158/" aria-label="LinkedIn">
+                            <span class="material-symbols-outlined">group</span>
+                        </a>
+                        <a href="https://x.com/kriyabiosys" aria-label="Twitter">
+                            <span class="material-symbols-outlined">sms</span>
+                        </a>
+                        <a href="https://www.instagram.com/kriyabiosys/" aria-label="Instagram">
+                            <span class="material-symbols-outlined">photo_camera</span>
+                        </a>
+                        <a href="https://www.youtube.com/@kriyabiosys" aria-label="YouTube">
+                            <span class="material-symbols-outlined">play_arrow</span>
+                        </a>
+                        <a href="https://www.facebook.com/kriyabiosys" aria-label="Facebook">
+                            <span class="material-symbols-outlined">thumb_up</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-legal">
+                    <div class="legal-links">
+                        <a href="../privacy.html">Privacy Policy</a>
+                        <a href="../responsible-use.html">Responsible Use</a>
+                        <a href="../trademark.html">Trademark</a>
+                    </div>
+                    <div class="copyright">
+                        © Kriya Ltd 2025
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Navigation Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.getElementById('nav-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            
+            if (navToggle && navMenu) {
+                navToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
