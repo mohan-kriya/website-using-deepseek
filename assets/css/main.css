@@ -108,11 +108,12 @@ h4 { font-size: 1.4rem; }
     color: var(--secondary-orange);
 }
 
-/* Dropdown Menu */
+/* Dropdown Menu (layout) */
 .dropdown {
     position: relative;
 }
 
+/* 🔹 Vertical dropdown menu for Products */
 .dropdown-menu {
     position: absolute;
     top: 100%;
@@ -120,40 +121,56 @@ h4 { font-size: 1.4rem; }
     background: var(--white);
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
     border-radius: 8px;
-    padding: 1.5rem;
-    min-width: 300px;
+    padding: 0.5rem 0;
+    min-width: 220px;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
     transition: all var(--transition-normal);
-    display: flex;
-    gap: 2rem;
+    display: block; /* stack vertically */
 }
 
-.dropdown:hover .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+/* (We open dropdowns via click using .dropdown.active in HTML inline CSS) */
+
+/* Each category as a row */
+#products-dropdown .dropdown-column {
+    border-bottom: 1px solid #eee;
+    padding: 0.5rem 1rem;
 }
 
-.dropdown-column {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+#products-dropdown .dropdown-column:last-child {
+    border-bottom: none;
 }
 
-.dropdown-category {
+#products-dropdown .dropdown-category {
+    display: block;
     font-weight: 600;
     color: var(--primary-green);
     text-decoration: none;
-    margin-bottom: 0.5rem;
+    padding: 0.25rem 0;
 }
 
+/* Submenu (product list under each category) */
+#products-dropdown .dropdown-submenu {
+    display: none;
+    margin-top: 0.5rem;
+    margin-left: 1rem;
+}
+
+/* Desktop: show submenu on hover */
+@media (hover: hover) and (pointer: fine) {
+    #products-dropdown .dropdown-column:hover .dropdown-submenu {
+        display: block;
+    }
+}
+
+/* Dropdown item styling */
 .dropdown-item {
     text-decoration: none;
     color: var(--medium-gray);
     padding: 0.25rem 0;
     transition: var(--transition-fast);
+    display: block;
 }
 
 .dropdown-item:hover {
@@ -634,10 +651,8 @@ h4 { font-size: 1.4rem; }
         flex-direction: column;
         gap: 1rem;
     }
-}
 
-/* Mobile Navigation */
-@media (max-width: 768px) {
+    /* Mobile dropdown menu surface */
     .nav-menu.active {
         display: flex;
         flex-direction: column;
@@ -662,4 +677,8 @@ h4 { font-size: 1.4rem; }
     .dropdown.active .dropdown-menu {
         display: block;
     }
+
+    /* Mobile: reveal products when a column gets .open */
+    #products-dropdown .dropdown-submenu { display: none; }
+    #products-dropdown .dropdown-column.open .dropdown-submenu { display: block; }
 }

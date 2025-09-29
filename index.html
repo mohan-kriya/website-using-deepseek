@@ -57,6 +57,37 @@
             visibility: visible;
             opacity: 1;
         }
+
+        /* Click-based dropdown styles - OVERRIDE HOVER BEHAVIOR for opening the main dropdown */
+        .dropdown .dropdown-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all var(--transition-normal);
+        }
+        
+        .dropdown.active .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-toggle {
+            cursor: pointer;
+        }
+        
+        /* Remove hover behavior for opening the WHOLE dropdown (we open via click) */
+        .dropdown:hover .dropdown-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+        }
+        
+        .dropdown.active:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
@@ -75,12 +106,12 @@
                     <a href="about.html" class="nav-link">About</a>
                 </div>
                 
-                <!-- Products Dropdown -->
-                <div class="nav-item dropdown">
-                    <a href="products/" class="nav-link dropdown-toggle">
+                <!-- Products Dropdown - Click Activated -->
+                <div class="nav-item dropdown" id="products-dropdown">
+                    <a href="javascript:void(0)" class="nav-link dropdown-toggle" aria-expanded="false">
                         Products <span class="material-symbols-outlined">expand_more</span>
                     </a>
-                    <div class="dropdown-menu">
+                    <div class="dropdown-menu" role="menu" aria-label="Products">
                         <!-- Biocontrol Column -->
                         <div class="dropdown-column">
                             <a href="products/biocontrol.html" class="dropdown-category">Biocontrol</a>
@@ -287,12 +318,12 @@
                     </div>
                 </div>
                 
-                <!-- Technology Dropdown -->
-                <div class="nav-item dropdown">
-                    <a href="technology/" class="nav-link dropdown-toggle">
+                <!-- Technology Dropdown - Click Activated -->
+                <div class="nav-item dropdown" id="technology-dropdown">
+                    <a href="javascript:void(0)" class="nav-link dropdown-toggle" aria-expanded="false">
                         Technology <span class="material-symbols-outlined">expand_more</span>
                     </a>
-                    <div class="dropdown-menu">
+                    <div class="dropdown-menu" role="menu" aria-label="Technology">
                         <a href="technology/karyo.html" class="dropdown-item">Karyo</a>
                         <a href="technology/wynn.html" class="dropdown-item">Wynn</a>
                     </div>
@@ -302,17 +333,16 @@
                     <a href="contract-manufacturing.html" class="nav-link">Contract Manufacturing</a>
                 </div>
                 <div class="nav-item">
-                    <a href="contact.html" class="nav-link">Contact</a>
+                    <a href="contact/contact.html" class="nav-link">Contact</a>
                 </div>
             </div>
             
-            <div class="nav-toggle" id="nav-toggle">
+            <div class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
                 <span class="material-symbols-outlined">menu</span>
             </div>
         </div>
     </nav>
 
-    <!-- The rest of your HTML content remains exactly the same -->
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
@@ -346,7 +376,6 @@
         </div>
     </section>
 
-    <!-- Rest of the sections remain unchanged -->
     <!-- Why Kriya Section -->
     <section class="why-kriya">
         <div class="container">
@@ -606,7 +635,7 @@
                         <a href="about.html">About</a>
                         <a href="products/">Products</a>
                         <a href="technology/">Technology</a>
-                        <a href="contact.html">Contact</a>
+                        <a href="contact/contact.html">Contact</a>
                     </div>
                     
                     <div class="footer-contact">
@@ -649,5 +678,53 @@
 
     <!-- JavaScript -->
     <script src="assets/js/main.js"></script>
+    
+    <!-- Additional JavaScript for Click-based Dropdowns -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Click to toggle dropdowns (desktop & mobile)
+            const dropdowns = document.querySelectorAll('.dropdown');
+            
+            dropdowns.forEach(dropdown => {
+                const toggle = dropdown.querySelector('.dropdown-toggle');
+                
+                if (toggle) {
+                    toggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        // Close other dropdowns
+                        dropdowns.forEach(otherDropdown => {
+                            if (otherDropdown !== dropdown) {
+                                otherDropdown.classList.remove('active');
+                                const t = otherDropdown.querySelector('.dropdown-toggle');
+                                if (t) t.setAttribute('aria-expanded', 'false');
+                            }
+                        });
+                        
+                        // Toggle current dropdown
+                        const isActive = dropdown.classList.toggle('active');
+                        toggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+                    });
+                }
+            });
+
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function() {
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                    const t = dropdown.querySelector('.dropdown-toggle');
+                    if (t) t.setAttribute('aria-expanded', 'false');
+                });
+            });
+
+            // Prevent dropdown from closing when clicking inside
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                menu.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            });
+        });
+    </script>
 </body>
 </html>

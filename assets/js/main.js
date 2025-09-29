@@ -7,19 +7,32 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (navToggle && navMenu) {
         navToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
+            const active = navMenu.classList.toggle('active');
+            navToggle.setAttribute('aria-expanded', active ? 'true' : 'false');
         });
     }
     
-    // Mobile Dropdown Handling
-    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
-    
-    dropdownToggles.forEach(toggle => {
-        toggle.addEventListener('click', function(e) {
+    // NOTE: We open dropdowns via the inline script in index.html (click-based).
+    // Avoid adding another .dropdown-toggle handler here to prevent double toggling.
+
+    // Products submenu (mobile): tap a category to expand/collapse its product list
+    const productCategories = document.querySelectorAll('#products-dropdown .dropdown-category');
+
+    productCategories.forEach(link => {
+        link.addEventListener('click', function (e) {
             if (window.innerWidth <= 768) {
                 e.preventDefault();
-                const dropdown = this.parentElement;
-                dropdown.classList.toggle('active');
+
+                const column = this.closest('.dropdown-column');
+                const allColumns = column.parentElement.querySelectorAll('.dropdown-column');
+
+                // Close other open columns
+                allColumns.forEach(c => {
+                    if (c !== column) c.classList.remove('open');
+                });
+
+                // Toggle this one
+                column.classList.toggle('open');
             }
         });
     });
@@ -27,9 +40,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
+                e.preventDefault();
                 target.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
