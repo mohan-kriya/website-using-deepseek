@@ -88,6 +88,11 @@
             visibility: visible;
             transform: translateY(0);
         }
+
+        /* Smooth scrolling for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
 <body>
@@ -231,92 +236,7 @@
                         
                         <!-- Home & Garden Column -->
                         <div class="dropdown-column">
-                            <a href="" class="dropdown-category">Home & Garden</a>
-                            
-                            <!--
-                            <div class="dropdown-submenu">
-                                <a href="products/home-garden/ecoza-rix.html" class="dropdown-item">
-                                    Ecoza Rix
-                                    <div class="tooltip">WSP Tablets, RTU Spray</div>
-                                </a>
-                                <a href="products/home-garden/k-rix.html" class="dropdown-item">
-                                    K-Rix
-                                    <div class="tooltip">WSP Tablets, RTU Spray</div>
-                                </a>
-                                <a href="products/home-garden/margorix.html" class="dropdown-item">
-                                    MargoRix
-                                    <div class="tooltip">WSP Tablets, RTU Spray</div>
-                                </a>
-                                <a href="products/home-garden/spindura-rix.html" class="dropdown-item">
-                                    Spindura Rix
-                                    <div class="tooltip">WSP Tablets, RTU Spray</div>
-                                </a>
-                                <a href="products/home-garden/mycova.html" class="dropdown-item">
-                                    Mycova
-                                    <div class="tooltip">WSP Tablets, RTU Spray</div>
-                                </a>
-                                <a href="products/home-garden/rexora.html" class="dropdown-item">
-                                    Rexora
-                                    <div class="tooltip">WSP Tablets, RTU Spray</div>
-                                </a>
-                                <a href="products/home-garden/biota.html" class="dropdown-item">
-                                    Biota
-                                    <div class="tooltip">WSP Tablets, RTU Spray</div>
-                                </a>
-                                <a href="products/home-garden/seira.html" class="dropdown-item">
-                                    Seira
-                                    <div class="tooltip">WSP Tablets, RTU Spray</div>
-                                </a>
-                                <a href="products/home-garden/encilo.html" class="dropdown-item">
-                                    Encilo
-                                    <div class="tooltip">WSP Tablets, RTU Spray</div>
-                                </a>
-                                <a href="products/home-garden/neuvita.html" class="dropdown-item">
-                                    Neuvita
-                                    <div class="tooltip">WSP Tablets, RTU Spray</div>
-                                </a>
-                                <a href="products/home-garden/zenita.html" class="dropdown-item">
-                                    Zenita
-                                    <div class="tooltip">WSP Tablets, RTU Spray</div>
-                                </a>
-                                <a href="products/home-garden/cropsia.html" class="dropdown-item">
-                                    Cropsia
-                                    <div class="tooltip">WSP Tablets, RTU Spray</div>
-                                </a>
-                                <a href="products/home-garden/envicta.html" class="dropdown-item">
-                                    Envicta
-                                    <div class="tooltip">WSP Tablets, RTU Spray</div>
-                                </a>
-                                <a href="products/home-garden/igreen-npk.html" class="dropdown-item">
-                                    IGreen NPK
-                                    <div class="tooltip">WSP Tablets, RTU Spray</div>
-                                </a>
-                                <a href="products/home-garden/igreen-soil-plus.html" class="dropdown-item">
-                                    IGreen Soil+
-                                    <div class="tooltip">WSP Tablets, RTU Spray</div>
-                                </a>
-                                <a href="products/home-garden/igreen-tres.html" class="dropdown-item">
-                                    IGreen Tres
-                                    <div class="tooltip">WSP Tablets, RTU Spray</div>
-                                </a>
-                                <a href="products/home-garden/igreen-shield.html" class="dropdown-item">
-                                    IGreen Shield
-                                    <div class="tooltip">WSP Tablets, RTU Spray</div>
-                                </a>
-                                <a href="products/home-garden/admira-adrio.html" class="dropdown-item">
-                                    Admira Adrio
-                                    <div class="tooltip">WSP Tablets, RTU Spray</div>
-                                </a>
-                                <a href="products/home-garden/admira-admon.html" class="dropdown-item">
-                                    Admira Admon
-                                    <div class="tooltip">WSP Tablets, RTU Spray</div>
-                                </a>
-                                <a href="products/home-garden/admira-adyme.html" class="dropdown-item">
-                                    Admira Adyme
-                                    <div class="tooltip">WSP Tablets, RTU Spray</div>
-                                </a>
-                            </div>
-                        -->
+                            <a href="products/home-garden.html" class="dropdown-category">Home & Garden</a>
                         </div>
                     </div>
                 </div>
@@ -363,8 +283,8 @@
                         enhance crop health and productivity.
                     </p>
                     <div class="hero-cta">
-                        <a href="products/" class="btn btn-primary">Browse Products</a>
-                        <a href="assets/docs/product-catalog.pdf" class="btn btn-secondary" download>
+                        <a href="#product-categories" class="btn btn-primary">Browse Products</a>
+                        <a href="assets/img/dummyimage.pdf" class="btn btn-secondary" download>
                             <span class="material-symbols-outlined">download</span>
                             Download Catalog
                         </a>
@@ -417,7 +337,7 @@
     </section>
 
     <!-- Product Categories -->
-    <section class="product-categories">
+    <section class="product-categories" id="product-categories">
         <div class="container">
             <h2 class="section-title">Product Categories</h2>
             <div class="categories-grid">
@@ -635,10 +555,10 @@
                 
                 <div class="footer-main">
                     <div class="footer-links">
-                        <a href="..//website-using-deepseek/about/about.html">About/*/**</a>
-                        <a href="">Products</a>
-                        <a href="technology/">Technology</a>
-                        <a href="..//website-using-deepseek/contact/contact.html">Contact</a>
+                        <a href="about/about.html">About</a>
+                        <a href="products/">Products</a>
+                        <a href="">Technology</a>
+                        <a href="contact/contact.html">Contact</a>
                     </div>
                     
                     <div class="footer-contact">
@@ -648,19 +568,19 @@
                     
                     <div class="footer-social">
                         <a href="https://www.linkedin.com/company/108402158/" aria-label="LinkedIn">
-                            <span class="material-symbols-outlined">group</span>
+                            <span class="material-symbols-outlined">corporate_fare</span>
                         </a>
                         <a href="https://x.com/kriyabiosys" aria-label="Twitter">
-                            <span class="material-symbols-outlined">sms</span>
+                            <span class="material-symbols-outlined">chat</span>
                         </a>
                         <a href="https://www.instagram.com/kriyabiosys/" aria-label="Instagram">
-                            <span class="material-symbols-outlined">photo_camera</span>
+                            <span class="material-symbols-outlined">photo_library</span>
                         </a>
                         <a href="https://www.youtube.com/@kriyabiosys" aria-label="YouTube">
-                            <span class="material-symbols-outlined">play_arrow</span>
+                            <span class="material-symbols-outlined">smart_display</span>
                         </a>
                         <a href="https://www.facebook.com/kriyabiosys" aria-label="Facebook">
-                            <span class="material-symbols-outlined">thumb_up</span>
+                            <span class="material-symbols-outlined">diversity_3</span>
                         </a>
                     </div>
                 </div>

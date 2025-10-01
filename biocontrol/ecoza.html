@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Biostimulants Products - Kriya</title>
+  <title>Ecoza Products - Kriya</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -94,14 +94,14 @@
     }
 
     /* Product Grid */
-    .brands-grid {
+    .products-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 2rem;
       margin: 2rem auto;
       max-width: 1000px;
     }
-    .brand-card {
+    .product-card {
       background: var(--white);
       padding: 2rem;
       border-radius: 12px;
@@ -110,19 +110,19 @@
       border-left: 4px solid var(--accent-gold);
       transition: transform .3s;
     }
-    .brand-card:hover { transform: translateY(-5px); }
-    .brand-img {
+    .product-card:hover { transform: translateY(-5px); }
+    .product-img {
       max-width: 100px;
       margin: 0 auto 1rem;
       display: block;
     }
-    .brand-name {
+    .product-name {
       font-family: var(--font-heading);
       font-size: 1.6rem;
       color: var(--primary-green);
       margin-bottom: 0.5rem;
     }
-    .brand-ingredient {
+    .product-ingredient {
       background: var(--light-gray);
       padding: 0.5rem;
       border-radius: 4px;
@@ -130,7 +130,12 @@
       margin-bottom: 1.2rem;
       font-weight: 500;
     }
-    .brand-link {
+    .product-description {
+      color: var(--medium-gray);
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+    .product-link {
       display: inline-block;
       background: var(--primary-green);
       color: var(--white);
@@ -140,13 +145,13 @@
       font-weight: 500;
       transition: background .3s;
     }
-    .brand-link:hover { 
+    .product-link:hover { 
       background: var(--secondary-orange); 
       transform: translateY(-2px);
     }
 
-    /* Brands Section */
-    .brands-section {
+    /* Products Section */
+    .products-section {
       padding: var(--section-padding);
     }
 
@@ -206,7 +211,7 @@
         font-size: 2.5rem;
       }
       
-      .brands-grid {
+      .products-grid {
         grid-template-columns: 1fr;
       }
       
@@ -242,11 +247,11 @@
       <div class="nav-menu" id="nav-menu">
         <a href="../index.html" class="nav-link">Home</a>
         <a href="../about/about.html" class="nav-link">About</a>
-        <a href="biocontrol.html" class="nav-link">Biocontrol</a>
-        <a href="biostimulants.html" class="nav-link active">Biostimulants</a>
-        <a href="substrates.html" class="nav-link">Substrates</a>
-        <a href="home-garden.html" class="nav-link">Home & Garden</a>
-        <a href="" class="nav-link">Technology</a>
+        <a href="../products/biocontrol.html" class="nav-link">Biocontrol</a>
+        <a href="../products/biostimulants.html" class="nav-link">Biostimulants</a>
+        <a href="../products/substrates.html" class="nav-link">Substrates</a>
+        <a href="../products/home-garden.html" class="nav-link">Home & Garden</a>
+        <a href="../technology/" class="nav-link">Technology</a>
         <a href="../contract-manufactoring/contract-manufactoring.html" class="nav-link">Contract Manufacturing</a>
         <a href="../contact/contact.html" class="nav-link">Contact</a>
       </div>
@@ -259,8 +264,8 @@
     <div class="container">
       <div class="breadcrumb-links">
         <a href="../index.html">Home</a><span>></span>
-        <a href="../products/">Products</a><span>></span>
-        <span>Biostimulants</span>
+        <a href="../products/biocontrol.html">Biocontrol</a><span>></span>
+        <span>Ecoza</span>
       </div>
     </div>
   </section>
@@ -268,62 +273,45 @@
   <!-- Header -->
   <section class="page-header">
     <div class="container">
-      <h1 class="page-title">Biostimulants Products</h1>
-      <p class="page-description">Enhance plant growth, productivity, and stress resistance with our advanced biostimulant formulations. Natural solutions for healthier, more resilient crops.</p>
+      <h1 class="page-title">Ecoza Products</h1>
+      <p class="page-description">Powerful azadirachtin-based solutions for effective and eco-friendly pest management in agriculture.</p>
     </div>
   </section>
 
   <!-- Product Grid -->
-  <section class="brands-section">
+  <section class="products-section">
     <div class="container">
-      <div class="brands-grid">
-        <div class="brand-card">
-          <img src="../assets/img/products/igreen.jpeg" alt="IGreen" class="brand-img">
-          <h3 class="brand-name">IGreen</h3>
-          <div class="brand-ingredient">Consortium of Bacteria</div>
-          <a href="biostimulants/igreen.html" class="brand-link">View Product Details</a>
+      <div class="products-grid">
+        <div class="product-card">
+          <img src="../assets/img/products/ecoza-standard.jpg" alt="Ecoza Standard" class="product-img">
+          <h3 class="product-name">Ecoza Max</h3>
+          <div class="product-ingredient">Azadirachtin 3.0%</div>
+          <p class="product-description">A versatile neem-based biopesticide effective against a wide range of pests including aphids, whiteflies, and caterpillars.</p>
+          <a href="#" class="product-link">View Product Details</a>
         </div>
         
-        <div class="brand-card">
-          <img src="../assets/img/products/zenita.jpeg" alt="Zenita" class="brand-img">
-          <h3 class="brand-name">Zenita</h3>
-          <div class="brand-ingredient">Neem Limonoids based PGP</div>
-          <a href="biostimulants/zenita.html" class="brand-link">View Product Details</a>
+        <div class="product-card">
+          <img src="../assets/img/products/ecoza-premium.jpg" alt="Ecoza Premium" class="product-img">
+          <h3 class="product-name">Ecoza Rix</h3>
+          <div class="product-ingredient">Azadirachtin 12.0%WSP</div>
+          <p class="product-description">Concentrated formula for enhanced pest control in high-value crops and challenging pest conditions.</p>
+          <a href="#" class="product-link">View Product Details</a>
         </div>
         
-        <div class="brand-card">
-          <img src="../assets/img/products/cropsia.jpeg" alt="Cropsia" class="brand-img">
-          <h3 class="brand-name">Cropsia</h3>
-          <div class="brand-ingredient">Plant Extract based PGP</div>
-          <a href="biostimulants/cropsia.html" class="brand-link">View Product Details</a>
+        <div class="product-card">
+          <img src="../assets/img/products/ecoza-plus.jpg" alt="Ecoza Plus" class="product-img">
+          <h3 class="product-name">Ecoza Ace</h3>
+          <div class="product-ingredient">Azadirachtin 1.2%</div>
+          <p class="product-description">Enhanced formulation with synergistic botanical extracts for broader spectrum pest control.</p>
+          <a href="#" class="product-link">View Product Details</a>
         </div>
         
-        <div class="brand-card">
-          <img src="../assets/img/products/enrhize.jpeg" alt="Enrhize" class="brand-img">
-          <h3 class="brand-name">Enrhize</h3>
-          <div class="brand-ingredient">Arbuscular Mycorrhizal</div>
-          <a href="biostimulants/enrhize.html" class="brand-link">View Product Details</a>
-        </div>
-        
-        <div class="brand-card">
-          <img src="../assets/img/products/orgocare.jpeg" alt="Orgocare" class="brand-img">
-          <h3 class="brand-name">Orgocare</h3>
-          <div class="brand-ingredient">Plant based Stress Management</div>
-          <a href="biostimulants/orgocare.html" class="brand-link">View Product Details</a>
-        </div>
-        
-        <div class="brand-card">
-          <img src="../assets/img/products/blooma.jpeg" alt="Blooma" class="brand-img">
-          <h3 class="brand-name">Blooma</h3>
-          <div class="brand-ingredient">Seaweed based PGP</div>
-          <a href="biostimulants/blooma.html" class="brand-link">View Product Details</a>
-        </div>
-        
-        <div class="brand-card">
-          <img src="../assets/img/products/envicta.jpeg" alt="Envicta" class="brand-img">
-          <h3 class="brand-name">Envicta</h3>
-          <div class="brand-ingredient">Humic based PGP</div>
-          <a href="biostimulants/envicta.html" class="brand-link">View Product Details</a>
+        <div class="product-card">
+          <img src="../assets/img/products/ecoza-organic.jpg" alt="Ecoza Organic" class="product-img">
+          <h3 class="product-name">Ecoza Pro</h3>
+          <div class="product-ingredient">Azadirachtin 0.3%</div>
+          <p class="product-description">Certified organic formulation suitable for organic farming systems and export-oriented agriculture.</p>
+          <a href="#" class="product-link">View Product Details</a>
         </div>
       </div>
     </div>

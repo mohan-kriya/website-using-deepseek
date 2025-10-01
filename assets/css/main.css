@@ -682,3 +682,13 @@ h4 { font-size: 1.4rem; }
     #products-dropdown .dropdown-submenu { display: none; }
     #products-dropdown .dropdown-column.open .dropdown-submenu { display: block; }
 }
+
+.brand-name {
+  font-size: 15px;   /* example heading size */
+  font-weight: 200;
+}
+
+.brand-name sup {
+  font-size: 0.6em;   /* make superscript smaller */
+  margin-left: 2px;   /* add a tiny gap */
+}

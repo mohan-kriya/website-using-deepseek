@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Margoshine Products - Kriya</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Material Symbols -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+  <style>
+    :root {
+      --primary-green: #2A4E35;
+      --secondary-orange: #C45A2A;
+      --accent-gold: #B89B5C;
+      --dark-gray: #1A1A1A;
+      --medium-gray: #4A4A4A;
+      --light-gray: #F5F5F5;
+      --white: #FFFFFF;
+      --font-heading: 'Cormorant Garamond', serif;
+      --font-body: 'Inter', sans-serif;
+      --section-padding: 5rem 0;
+      --container-max-width: 1200px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      margin: 0;
+      padding-top: 80px;
+      background: var(--white);
+      color: var(--dark-gray);
+    }
+
+    .container {
+      max-width: var(--container-max-width);
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Navigation */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: var(--white);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+      z-index: 1000;
+      padding: 1rem 0;
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-logo img { height: 40px; }
+    .nav-menu { display: flex; gap: 2rem; }
+    .nav-link { text-decoration: none; color: var(--dark-gray); font-weight: 500; }
+    .nav-link:hover, .nav-link.active { color: var(--secondary-orange); }
+    .nav-toggle { display: none; cursor: pointer; }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      background: var(--light-gray);
+      padding: 1rem 0;
+      font-size: 0.9rem;
+    }
+    .breadcrumb-links { display: flex; gap: 0.5rem; }
+    .breadcrumb-links a { text-decoration: none; color: var(--medium-gray); }
+    .breadcrumb-links a:hover { color: var(--primary-green); }
+
+    /* Header */
+    .page-header {
+      text-align: center;
+      padding: 3rem 0;
+      background: linear-gradient(135deg, var(--light-gray) 0%, var(--white) 100%);
+    }
+    .page-title { 
+      font-size: 3rem; 
+      color: var(--primary-green); 
+      margin-bottom: 1rem;
+      font-family: var(--font-heading);
+    }
+    .page-description { 
+      max-width: 600px; 
+      margin: auto; 
+      color: var(--medium-gray);
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    /* Category Sections */
+    .category-section {
+      padding: var(--section-padding);
+    }
+    .category-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .category-title {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      color: var(--primary-green);
+      margin-bottom: 1rem;
+    }
+    .category-description {
+      max-width: 800px;
+      margin: 0 auto;
+      color: var(--medium-gray);
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    /* Product Grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 2rem auto;
+      max-width: 1000px;
+    }
+    .product-card {
+      background: var(--white);
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      border-left: 4px solid var(--accent-gold);
+      transition: transform .3s;
+    }
+    .product-card:hover { transform: translateY(-5px); }
+    .product-img {
+      max-width: 100px;
+      margin: 0 auto 1rem;
+      display: block;
+    }
+    .product-name {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      color: var(--primary-green);
+      margin-bottom: 0.5rem;
+    }
+    .product-ingredient {
+      background: var(--light-gray);
+      padding: 0.5rem;
+      border-radius: 4px;
+      color: var(--medium-gray);
+      margin-bottom: 1.2rem;
+      font-weight: 500;
+    }
+    .product-description {
+      color: var(--medium-gray);
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+    .product-link {
+      display: inline-block;
+      background: var(--primary-green);
+      color: var(--white);
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      font-weight: 500;
+      transition: background .3s;
+    }
+    .product-link:hover { 
+      background: var(--secondary-orange); 
+      transform: translateY(-2px);
+    }
+
+    /* Divider */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, var(--accent-gold) 50%, transparent 100%);
+      margin: 2rem 0;
+    }
+
+    /* Technology Section */
+    .technology-section {
+      background: var(--light-gray);
+      padding: var(--section-padding);
+      text-align: center;
+    }
+    .technology-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      color: var(--primary-green);
+      margin-bottom: 2rem;
+    }
+    .technology-description {
+      color: var(--medium-gray);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .benefit-card {
+      background: var(--white);
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+    }
+    .benefit-icon {
+      font-size: 2.5rem;
+      color: var(--accent-gold);
+      margin-bottom: 1rem;
+    }
+    .benefit-title {
+      font-family: var(--font-heading);
+      color: var(--primary-green);
+      margin-bottom: 1rem;
+    }
+
+    /* Footer */
+    .footer {
+      background: #1a1a1a;
+      color: var(--white);
+      padding: 2rem 0 1rem;
+      margin-top: 4rem;
+    }
+    .footer-disclaimer {
+      text-align: center;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      margin-bottom: 1rem;
+    }
+    .footer-disclaimer strong { color: var(--accent-gold); }
+    .footer-main {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .footer-links, .footer-contact, .footer-social { display: flex; gap: 2rem; }
+    .footer-links a, .footer-contact a, .footer-social a {
+      text-decoration: none; color: var(--white); transition: 0.2s;
+    }
+    .footer-links a:hover, .footer-contact a:hover, .footer-social a:hover { color: var(--accent-gold); }
+    .footer-legal {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      padding-top: 1rem;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      body {
+        padding-top: 70px;
+      }
+      
+      .nav-menu {
+        display: none;
+      }
+      
+      .nav-toggle {
+        display: block;
+      }
+      
+      .page-title {
+        font-size: 2.5rem;
+      }
+      
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .benefits-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-main {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .footer-links, .footer-contact {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav-menu.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--white);
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        padding: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="../index.html" class="nav-logo"><img src="../assets/img/logo.png" alt="Kriya Logo"></a>
+      <div class="nav-menu" id="nav-menu">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../about/about.html" class="nav-link">About</a>
+        <a href="../products/biocontrol.html" class="nav-link active">Biocontrol</a>
+        <a href="../products/biostimulants.html" class="nav-link">Biostimulants</a>
+        <a href="../products/substrates.html" class="nav-link">Substrates</a>
+        <a href="../products/home-garden.html" class="nav-link">Home & Garden</a>
+        <a href="../technology/" class="nav-link">Technology</a>
+        <a href="../contract-manufactoring/contract-manufactoring.html" class="nav-link">Contract Manufacturing</a>
+        <a href="../contact/contact.html" class="nav-link">Contact</a>
+      </div>
+      <div class="nav-toggle" id="nav-toggle"><span class="material-symbols-outlined">menu</span></div>
+    </div>
+  </nav>
+
+  <!-- Breadcrumb -->
+  <section class="breadcrumb">
+    <div class="container">
+      <div class="breadcrumb-links">
+        <a href="../index.html">Home</a><span>></span>
+        <a href="../products/biocontrol.html">Biocontrol</a><span>></span>
+        <span>Margoshine</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1 class="page-title">Margoshine Products</h1>
+      <p class="page-description">Premium neem oil formulations for comprehensive plant protection and pest management in sustainable agriculture.</p>
+    </div>
+  </section>
+
+  <!-- Pure Neem Oil Category Section -->
+  <section class="category-section">
+    <div class="container">
+      <div class="category-header">
+        <h2 class="category-title">Pure Neem Oil Formulations</h2>
+        <p class="category-description">High-quality cold-pressed neem oil extracts preserving natural azadirachtin content for effective pest control and plant health enhancement.</p>
+      </div>
+      
+      <div class="products-grid">
+        <div class="product-card">
+          <img src="../assets/img/products/margoshine-premium.jpg" alt="Margoshine Shine" class="product-img">
+          <h3 class="product-name">MargoShine</h3>
+          <div class="product-ingredient">Cold-Pressed Neem Oil 100%</div>
+          <p class="product-description">Premium cold-pressed neem oil with maximum azadirachtin retention for superior pest control and plant protection.</p>
+          <a href="../products/margoshine/margoshine-premium.html" class="product-link">View Product Details</a>
+        </div>
+        
+        <div class="product-card">
+          <img src="../assets/img/products/margoshine-ec.jpg" alt="MargoRix" class="product-img">
+          <h3 class="product-name">MargoRix</h3>
+          <div class="product-ingredient">Neem Oil 80% EC</div>
+          <p class="product-description">Emulsifiable concentrate formulation for easy mixing and superior coverage in large-scale agricultural applications.</p>
+          <a href="../products/margoshine/margoshine-ec.html" class="product-link">View Product Details</a>
+        </div>
+
+         <div class="product-card">
+          <img src="../assets/img/products/margosppin-ec.jpg" alt="MargoSpin" class="product-img">
+          <h3 class="product-name">MargoSpin</h3>
+          <div class="product-ingredient">Neem Oil 80% EC</div>
+          <p class="product-description">Emulsifiable concentrate formulation for easy mixing and superior coverage in large-scale agricultural applications.</p>
+          <a href="../products/margoshine/margoshine-ec.html" class="product-link">View Product Details</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Divider -->
+  <div class="container">
+    <div class="section-divider"></div>
+  </div>
+
+  <!-- Enriched Formulations Category Section -->
+  <section class="category-section">
+    <div class="container">
+      <div class="category-header">
+        <h2 class="category-title">Enriched Neem Formulations</h2>
+        <p class="category-description">Advanced neem-based formulations enhanced with complementary botanical extracts for broader spectrum pest control and additional plant benefits.</p>
+      </div>
+      
+      <div class="products-grid">
+        <div class="product-card">
+          <img src="../assets/img/products/margoshine-plus.jpg" alt="Margoshine Plus" class="product-img">
+          <h3 class="product-name">Margoshine Plus</h3>
+          <div class="product-ingredient">Neem Oil + Karanjin</div>
+          <p class="product-description">Enhanced formulation combining neem oil with karanjin for superior pest repellent and anti-feedant properties.</p>
+          <a href="../products/margoshine/margoshine-plus.html" class="product-link">View Product Details</a>
+        </div>
+        
+        <div class="product-card">
+          <img src="../assets/img/products/margoshine-gold.jpg" alt="Margoshine Gold" class="product-img">
+          <h3 class="product-name">Margoshine Gold</h3>
+          <div class="product-ingredient">Neem Oil + Garlic Extract</div>
+          <p class="product-description">Powerful combination of neem oil and garlic extract for enhanced insecticidal and fungicidal properties.</p>
+          <a href="../products/margoshine/margoshine-gold.html" class="product-link">View Product Details</a>
+        </div>
+        
+        <div class="product-card">
+          <img src="../assets/img/products/margoshine-bio.jpg" alt="Margoshine Bio" class="product-img">
+          <h3 class="product-name">Margoshine Bio</h3>
+          <div class="product-ingredient">Neem Oil + Botanical Oils</div>
+          <p class="product-description">Multi-botanical oil blend for comprehensive pest management and plant health enhancement.</p>
+          <a href="../products/margoshine/margoshine-bio.html" class="product-link">View Product Details</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technology Section -->
+  <section class="technology-section">
+    <div class="container">
+      <div class="technology-content">
+        <h2 class="section-title">Neem Oil Technology</h2>
+        <p class="technology-description">
+          Margoshine products are derived from premium quality neem seeds through cold-pressing technology that preserves 
+          the natural bioactive compounds. Neem oil contains multiple active ingredients including azadirachtin, nimbin, 
+          and salanin that work synergistically to provide repellent, anti-feedant, growth regulatory, and oviposition 
+          deterrent effects on various pests.
+        </p>
+        
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <span class="material-symbols-outlined">pest_control</span>
+            </div>
+            <h3 class="benefit-title">Broad Spectrum</h3>
+            <p>Effective against 200+ insect species including aphids, whiteflies, mites, and caterpillars.</p>
+          </div>
+          
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <span class="material-symbols-outlined">eco</span>
+            </div>
+            <h3 class="benefit-title">Eco-Friendly</h3>
+            <p>Biodegradable and safe for beneficial insects, pollinators, and the environment.</p>
+          </div>
+          
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <span class="material-symbols-outlined">psychology</span>
+            </div>
+            <h3 class="benefit-title">Multiple Modes</h3>
+            <p>Works as repellent, anti-feedant, growth regulator, and oviposition deterrent.</p>
+          </div>
+          
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <span class="material-symbols-outlined">shield</span>
+            </div>
+            <h3 class="benefit-title">Resistance Management</h3>
+            <p>Complex chemical composition reduces the risk of pest resistance development.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-disclaimer">
+        <p><strong>Usage Disclaimer:</strong> Always follow label instructions and dosage recommendations. Contact us for specific usage guidance.</p>
+      </div>
+      <div class="footer-main">
+        <div class="footer-links">
+          <a href="../about.html">About</a>
+          <a href="../products/">Products</a>
+          <a href="../technology/">Technology</a>
+          <a href="../contact.html">Contact</a>
+        </div>
+        <div class="footer-contact">
+          <a href="mailto:info@kriya.ltd">info@kriya.ltd</a>
+          <a href="https://wa.me/916385848466">+91 6385848466</a>
+        </div>
+        <div class="footer-social">
+          <a href="https://www.linkedin.com/company/108402158/" aria-label="LinkedIn"><span class="material-symbols-outlined">group</span></a>
+          <a href="https://x.com/kriyabiosys" aria-label="Twitter"><span class="material-symbols-outlined">sms</span></a>
+          <a href="https://www.instagram.com/kriyabiosys/" aria-label="Instagram"><span class="material-symbols-outlined">photo_camera</span></a>
+          <a href="https://www.youtube.com/@kriyabiosys" aria-label="YouTube"><span class="material-symbols-outlined">play_arrow</span></a>
+          <a href="https://www.facebook.com/kriyabiosys" aria-label="Facebook"><span class="material-symbols-outlined">thumb_up</span></a>
+        </div>
+      </div>
+      <div class="footer-legal">
+        <div class="legal-links">
+          <a href="../privacy.html">Privacy Policy</a>
+          <a href="../responsible-use.html">Responsible Use</a>
+          <a href="../trademark.html">Trademark</a>
+        </div>
+        <div class="copyright">© Kriya Ltd 2025</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('nav-toggle').onclick = function() {
+      document.getElementById('nav-menu').classList.toggle('active');
+    }
+  </script>
+</body>
+</html>
