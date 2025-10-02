@@ -12,578 +12,270 @@
 
   <!-- Material Symbols -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <!-- Font Awesome for social media -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
   <style>
     /* Reset and Base */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin:0; padding:0; box-sizing:border-box; }
 
     :root {
-      --primary-green: #2A4E35;
-      --secondary-orange: #C45A2A;
-      --accent-gold: #B89B5C;
-      --dark-gray: #1A1A1A;
-      --medium-gray: #4A4A4A;
-      --light-gray: #F5F5F5;
-      --white: #FFFFFF;
-
-      --font-heading: 'Cormorant Garamond', serif;
-      --font-body: 'Inter', sans-serif;
-
-      --section-padding: 5rem 0;
-      --container-max-width: 1200px;
+      --primary-green:#2A4E35;
+      --secondary-orange:#C45A2A;
+      --accent-gold:#B89B5C;
+      --dark-gray:#1A1A1A;
+      --medium-gray:#4A4A4A;
+      --light-gray:#F5F5F5;
+      --white:#FFFFFF;
+      --font-heading:'Cormorant Garamond',serif;
+      --font-body:'Inter',sans-serif;
+      --section-padding:5rem 0;
+      --container-max-width:1200px;
+      --transition-normal:0.3s ease;
     }
 
     body {
-      font-family: var(--font-body);
-      background: var(--white);
-      color: var(--dark-gray);
-      line-height: 1.6;
-      padding-top: 80px;
+      font-family:var(--font-body);
+      background:var(--white);
+      color:var(--dark-gray);
+      line-height:1.6;
+      padding-top:80px;
     }
-
-    .container {
-      max-width: var(--container-max-width);
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
+    .container{max-width:var(--container-max-width);margin:0 auto;padding:0 2rem;}
 
     /* Navbar */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: var(--white);
-      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-      padding: 1rem 0;
-      z-index: 1000;
-    }
+    .navbar{position:fixed;top:0;left:0;width:100%;background:var(--white);
+      box-shadow:0 2px 15px rgba(0,0,0,0.1);padding:1rem 0;z-index:1000;}
+    .nav-container{max-width:var(--container-max-width);margin:auto;padding:0 2rem;
+      display:flex;justify-content:space-between;align-items:center;}
+    .nav-logo img{height:60px;width:auto;}
+    .nav-menu{display:flex;gap:2rem;align-items:center;}
+    .nav-link{color:var(--dark-gray);text-decoration:none;font-weight:500;
+      display:flex;align-items:center;gap:0.25rem;transition:0.2s;}
+    .nav-link:hover,.nav-link.active{color:var(--secondary-orange);}
+    .nav-item{position:relative;}
+    .nav-toggle{display:none;cursor:pointer;}
 
-    .nav-container {
-      max-width: var(--container-max-width);
-      margin: auto;
-      padding: 0 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    /* Dropdown - match about.html */
+    .dropdown-menu{
+      position:absolute;top:100%;left:0;background:var(--white);
+      box-shadow:0 10px 30px rgba(0,0,0,0.15);
+      border-radius:8px;padding:0.5rem 0;min-width:220px;
+      opacity:0;visibility:hidden;transform:translateY(-10px);
+      transition:all var(--transition-normal);display:block;z-index:1000;
     }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
+    .dropdown.active .dropdown-menu{opacity:1;visibility:visible;transform:translateY(0);}
+    .dropdown:hover .dropdown-menu{opacity:0;visibility:hidden;transform:translateY(-10px);}
+    .dropdown.active:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateY(0);}
+    #products-dropdown .dropdown-column{border-bottom:1px solid #eee;padding:0.5rem 1rem;}
+    #products-dropdown .dropdown-column:last-child{border-bottom:none;}
+    #products-dropdown .dropdown-category{
+      display:block;font-weight:600;color:var(--primary-green);text-decoration:none;padding:0.25rem 0;}
+    #products-dropdown .dropdown-submenu{display:none;margin-top:0.5rem;margin-left:1rem;}
+    @media (hover:hover) and (pointer:fine){
+      #products-dropdown .dropdown-column:hover .dropdown-submenu{display:block;}
     }
-
-    .logo-img {
-      height: 60px;
-      width: auto;
-    }
-
-    .nav-menu {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-    }
-
-    .nav-item {
-      position: relative;
-    }
-
-    .nav-link {
-      color: var(--dark-gray);
-      text-decoration: none;
-      font-weight: 500;
-      transition: 0.2s ease;
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-    }
-
-    .nav-link:hover,
-    .nav-link.active {
-      color: var(--secondary-orange);
-    }
-
-    .dropdown {
-      position: relative;
-    }
-
-    .dropdown-toggle {
-      cursor: pointer;
-    }
-
-    .dropdown-menu {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: var(--white);
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-      border-radius: 8px;
-      padding: 1rem;
-      min-width: 200px;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(-10px);
-      transition: all 0.3s ease;
-      z-index: 1000;
-    }
-
-    .dropdown:hover .dropdown-menu {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-
-    .dropdown-column {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .dropdown-category,
-    .dropdown-item {
-      color: var(--dark-gray);
-      text-decoration: none;
-      padding: 0.5rem 0;
-      transition: color 0.2s;
-      display: block;
-    }
-
-    .dropdown-category:hover,
-    .dropdown-item:hover {
-      color: var(--secondary-orange);
-    }
-
-    .nav-toggle {
-      display: none;
-      cursor: pointer;
-    }
+    .dropdown-item{color:var(--dark-gray);text-decoration:none;padding:0.25rem 0;
+      display:block;transition:color 0.2s;position:relative;}
+    .dropdown-item:hover{color:var(--secondary-orange);}
+    .dropdown-item .tooltip{visibility:hidden;background:var(--primary-green);color:var(--white);
+      text-align:center;border-radius:4px;padding:8px 12px;position:absolute;z-index:1000;
+      bottom:100%;left:50%;transform:translateX(-50%);opacity:0;transition:opacity 0.3s;
+      font-size:0.8rem;white-space:nowrap;margin-bottom:5px;min-width:120px;}
+    .dropdown-item .tooltip::after{
+      content:"";position:absolute;top:100%;left:50%;margin-left:-5px;border-width:5px;
+      border-style:solid;border-color:var(--primary-green) transparent transparent transparent;}
+    .dropdown-item:hover .tooltip{visibility:visible;opacity:1;}
 
     /* Breadcrumb */
-    .breadcrumb {
-      padding: 2rem 0 1rem;
-      background: var(--light-gray);
-    }
-
-    .breadcrumb-links {
-      display: flex;
-      gap: .5rem;
-      font-size: 0.9rem;
-    }
-
-    .breadcrumb-links a {
-      color: var(--medium-gray);
-      text-decoration: none;
-    }
-
-    .breadcrumb-links a:hover {
-      color: var(--primary-green);
-    }
-
-    .breadcrumb-links span {
-      color: var(--primary-green);
-    }
+    .breadcrumb{padding:2rem 0 1rem;background:var(--light-gray);}
+    .breadcrumb-links{display:flex;gap:.5rem;font-size:0.9rem;}
+    .breadcrumb-links a{color:var(--medium-gray);text-decoration:none;}
+    .breadcrumb-links a:hover{color:var(--primary-green);}
+    .breadcrumb-links span{color:var(--primary-green);}
 
     /* Page Header */
-    .page-header {
-      padding: 3rem 0;
-      text-align: center;
-      background: linear-gradient(135deg, var(--light-gray), var(--white));
-    }
+    .page-header{padding:3rem 0;text-align:center;
+      background:linear-gradient(135deg,var(--light-gray),var(--white));}
+    .page-title{font-size:3rem;font-family:var(--font-heading);color:var(--primary-green);margin-bottom:1rem;}
+    .page-description{font-size:1.1rem;color:var(--medium-gray);max-width:600px;margin:auto;}
 
-    .page-title {
-      font-size: 3rem;
-      font-family: var(--font-heading);
-      color: var(--primary-green);
-      margin-bottom: 1rem;
-    }
-
-    .page-description {
-      font-size: 1.1rem;
-      color: var(--medium-gray);
-      max-width: 600px;
-      margin: auto;
-    }
-
-    /* Manufacturing Sections */
-    .manufacturing-section {
-      padding: var(--section-padding);
-    }
-
-    .section-title {
-      text-align: center;
-      color: var(--primary-green);
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-      font-family: var(--font-heading);
-    }
-
-    .capabilities-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .capability-card {
-      background: var(--white);
-      padding: 2rem;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      border: 1px solid var(--light-gray);
-      transition: transform 0.3s ease;
-    }
-
-    .capability-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .capability-icon {
-      font-size: 3rem;
-      color: var(--accent-gold);
-      margin-bottom: 1.5rem;
-    }
-
-    .capability-card h3 {
-      font-size: 1.5rem;
-      color: var(--primary-green);
-      margin-bottom: 1rem;
-      font-family: var(--font-heading);
-    }
-
-    .capability-card p {
-      color: var(--medium-gray);
-    }
+    /* Manufacturing Capabilities */
+    .manufacturing-section{padding:var(--section-padding);}
+    .section-title{text-align:center;color:var(--primary-green);font-size:2.5rem;
+      margin-bottom:3rem;font-family:var(--font-heading);}
+    .capabilities-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;
+      max-width:1000px;margin:0 auto;}
+    .capability-card{background:var(--white);padding:2rem;border-radius:12px;text-align:center;
+      box-shadow:0 5px 15px rgba(0,0,0,0.05);border:1px solid var(--light-gray);transition:transform 0.3s;}
+    .capability-card:hover{transform:translateY(-5px);}
+    .capability-icon{font-size:3rem;color:var(--accent-gold);margin-bottom:1.5rem;}
+    .capability-card h3{font-size:1.5rem;color:var(--primary-green);margin-bottom:1rem;font-family:var(--font-heading);}
+    .capability-card p{color:var(--medium-gray);}
 
     /* Process Section */
-    .process-section {
-      padding: var(--section-padding);
-      background: var(--light-gray);
-    }
+    .process-section{padding:var(--section-padding);background:var(--light-gray);}
+    .process-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:2rem;max-width:1000px;margin:0 auto;}
+    .process-step{background:var(--white);padding:2rem;border-radius:12px;text-align:center;position:relative;}
+    .step-number{position:absolute;top:-15px;left:50%;transform:translateX(-50%);
+      background:var(--primary-green);color:var(--white);width:40px;height:40px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;font-weight:bold;}
+    .process-step h3{color:var(--primary-green);margin-bottom:1rem;font-family:var(--font-heading);}
+    .process-step p{color:var(--medium-gray);}
 
-    .process-steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
+    /* Facilities */
+    .facilities-section{padding:var(--section-padding);}
+    .facilities-content{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;
+      max-width:1000px;margin:0 auto;}
+    .facilities-text h2{font-size:2rem;color:var(--primary-green);margin-bottom:1.5rem;font-family:var(--font-heading);}
+    .facilities-text p{margin-bottom:1.5rem;color:var(--medium-gray);}
+    .facility-features{list-style:none;}
+    .facility-features li{padding:0.5rem 0;color:var(--medium-gray);position:relative;padding-left:1.5rem;}
+    .facility-features li:before{content:"✓";color:var(--accent-gold);position:absolute;left:0;font-weight:bold;}
+    .facilities-image img{width:100%;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.1);}
 
-    .process-step {
-      background: var(--white);
-      padding: 2rem;
-      border-radius: 12px;
-      text-align: center;
-      position: relative;
-    }
-
-    .step-number {
-      position: absolute;
-      top: -15px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--primary-green);
-      color: var(--white);
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-    }
-
-    .process-step h3 {
-      color: var(--primary-green);
-      margin-bottom: 1rem;
-      font-family: var(--font-heading);
-    }
-
-    .process-step p {
-      color: var(--medium-gray);
-    }
-
-    /* Facilities Section */
-    .facilities-section {
-      padding: var(--section-padding);
-    }
-
-    .facilities-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .facilities-text h2 {
-      font-size: 2rem;
-      color: var(--primary-green);
-      margin-bottom: 1.5rem;
-      font-family: var(--font-heading);
-    }
-
-    .facilities-text p {
-      margin-bottom: 1.5rem;
-      color: var(--medium-gray);
-    }
-
-    .facility-features {
-      list-style: none;
-    }
-
-    .facility-features li {
-      padding: 0.5rem 0;
-      color: var(--medium-gray);
-      position: relative;
-      padding-left: 1.5rem;
-    }
-
-    .facility-features li:before {
-      content: "✓";
-      color: var(--accent-gold);
-      position: absolute;
-      left: 0;
-      font-weight: bold;
-    }
-
-    .facilities-image {
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
-
-    .facilities-image img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    /* CTA Section */
-    .cta-section {
-      padding: var(--section-padding);
-      background: var(--light-gray);
-      text-align: center;
-    }
-
-    .cta-content {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .cta-title {
-      font-size: 2.2rem;
-      color: var(--primary-green);
-      margin-bottom: 1.5rem;
-      font-family: var(--font-heading);
-    }
-
-    .cta-description {
-      color: var(--medium-gray);
-      margin-bottom: 2rem;
-    }
-
-    .btn {
-      padding: .75rem 1.5rem;
-      border-radius: 6px;
-      font-weight: 500;
-      cursor: pointer;
-      border: none;
-      transition: 0.3s;
-      text-decoration: none;
-      display: inline-block;
-    }
-
-    .btn-primary {
-      background: var(--primary-green);
-      color: var(--white);
-    }
-
-    .btn-primary:hover {
-      background: var(--secondary-orange);
-      transform: translateY(-2px);
-    }
+    /* CTA */
+    .cta-section{padding:var(--section-padding);background:var(--light-gray);text-align:center;}
+    .cta-title{font-size:2.2rem;color:var(--primary-green);margin-bottom:1.5rem;font-family:var(--font-heading);}
+    .cta-description{color:var(--medium-gray);margin-bottom:2rem;}
+    .btn{padding:.75rem 1.5rem;border-radius:6px;font-weight:500;cursor:pointer;border:none;
+      transition:0.3s;text-decoration:none;display:inline-block;}
+    .btn-primary{background:var(--primary-green);color:var(--white);}
+    .btn-primary:hover{background:var(--secondary-orange);transform:translateY(-2px);}
 
     /* Footer */
-    .footer {
-      background: var(--dark-gray);
-      color: var(--white);
-      padding: 3rem 0 1rem;
-    }
-
-    .footer-disclaimer {
-      text-align: center;
-      padding-bottom: 2rem;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      margin-bottom: 2rem;
-    }
-
-    .footer-disclaimer strong {
-      color: var(--accent-gold);
-    }
-
-    .footer-main {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-
-    .footer-links,
-    .footer-contact {
-      display: flex;
-      gap: 2rem;
-    }
-
-    .footer-links a,
-    .footer-contact a {
-      color: var(--white);
-      text-decoration: none;
-      transition: 0.2s;
-    }
-
-    .footer-links a:hover,
-    .footer-contact a:hover {
-      color: var(--accent-gold);
-    }
-
-    .footer-social {
-      display: flex;
-      gap: 1rem;
-    }
-
-    .footer-social a {
-      color: var(--white);
-      text-decoration: none;
-      transition: 0.2s;
-    }
-
-    .footer-social a:hover {
-      color: var(--accent-gold);
-      transform: translateY(-2px);
-    }
-
-    .footer-legal {
-      border-top: 1px solid rgba(255,255,255,0.1);
-      padding-top: 2rem;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-      font-size: 0.9rem;
-    }
-
-    .legal-links {
-      display: flex;
-      gap: 2rem;
-    }
-
-    .legal-links a {
-      color: rgba(255,255,255,0.7);
-      text-decoration: none;
-    }
-
-    .legal-links a:hover {
-      color: var(--accent-gold);
-    }
+    .footer{background:var(--dark-gray);color:var(--white);padding:3rem 0 1rem;}
+    .footer-disclaimer{text-align:center;padding-bottom:2rem;border-bottom:1px solid rgba(255,255,255,0.1);margin-bottom:2rem;}
+    .footer-disclaimer strong{color:var(--accent-gold);}
+    .footer-main{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:2rem;margin-bottom:2rem;}
+    .footer-links,.footer-contact{display:flex;gap:2rem;}
+    .footer-links a,.footer-contact a{color:var(--white);text-decoration:none;transition:0.2s;}
+    .footer-links a:hover,.footer-contact a:hover{color:var(--accent-gold);}
+    .footer-social{display:flex;gap:1rem;}
+    .footer-social a{color:var(--white);font-size:1.5rem;transition:var(--transition-normal);}
+    .footer-social a:hover{color:var(--accent-gold);transform:translateY(-2px);}
+    .footer-legal{border-top:1px solid rgba(255,255,255,0.1);padding-top:2rem;display:flex;
+      justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:0.9rem;}
+    .legal-links{display:flex;gap:2rem;}
+    .legal-links a{color:rgba(255,255,255,0.7);text-decoration:none;}
+    .legal-links a:hover{color:var(--accent-gold);}
 
     /* Responsive */
-    @media (max-width: 1024px) {
-      .capabilities-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-      
-      .facilities-content {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 768px) {
-      body {
-        padding-top: 70px;
-      }
-
-      .nav-menu {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: var(--white);
-        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        padding: 2rem;
-        flex-direction: column;
-      }
-
-      .nav-menu.active {
-        display: flex;
-      }
-
-      .dropdown-menu {
-        position: static;
-        opacity: 1;
-        visibility: visible;
-        transform: none;
-        box-shadow: none;
-        padding: 1rem 0 0 1rem;
-      }
-
-      .nav-toggle {
-        display: block;
-      }
-
-      .capabilities-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .process-steps {
-        grid-template-columns: 1fr;
-      }
-
-      .footer-main {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .footer-links,
-      .footer-contact {
-        flex-direction: column;
-        gap: 1rem;
-      }
+    @media(max-width:1024px){.capabilities-grid{grid-template-columns:1fr 1fr;}
+      .facilities-content{grid-template-columns:1fr;}}
+    @media(max-width:768px){
+      body{padding-top:70px;}
+      .nav-menu{display:none;position:absolute;top:100%;left:0;width:100%;background:var(--white);
+        box-shadow:0 5px 20px rgba(0,0,0,0.1);padding:2rem;flex-direction:column;}
+      .nav-menu.active{display:flex;}
+      .dropdown-menu{position:static;opacity:1;visibility:visible;transform:none;
+        box-shadow:none;padding:1rem 0 0 1rem;display:none;}
+      .dropdown.active .dropdown-menu{display:block;}
+      .nav-toggle{display:block;}
+      .capabilities-grid{grid-template-columns:1fr;}
+      .process-steps{grid-template-columns:1fr;}
+      .footer-main{flex-direction:column;text-align:center;}
+      .footer-links,.footer-contact{flex-direction:column;gap:1rem;}
     }
   </style>
 </head>
 <body>
+
   <!-- Navigation -->
   <nav class="navbar">
     <div class="nav-container">
       <a href="../index.html" class="nav-logo">
-        <img src="../assets/img/logo.png" alt="Kriya Logo" class="logo-img">
+        <img src="../assets/img/logo.png" alt="Kriya Logo">
       </a>
 
       <div class="nav-menu" id="nav-menu">
         <div class="nav-item"><a href="../index.html" class="nav-link">Home</a></div>
         <div class="nav-item"><a href="../about/about.html" class="nav-link">About</a></div>
 
-        <!-- Products Dropdown -->
+        <!-- ✅ Products Dropdown (click-based like about.html) -->
         <div class="nav-item dropdown" id="products-dropdown">
           <a href="javascript:void(0)" class="nav-link dropdown-toggle" aria-expanded="false">
             Products <span class="material-symbols-outlined">expand_more</span>
           </a>
           <div class="dropdown-menu" role="menu" aria-label="Products">
+            <!-- Biocontrol Column -->
             <div class="dropdown-column">
               <a href="../products/biocontrol.html" class="dropdown-category">Biocontrol</a>
+              <div class="dropdown-submenu">
+                <a href="../products/biocontrol/ecoza.html" class="dropdown-item">Ecoza<div class="tooltip">Azadirachtin</div></a>
+                <a href="../products/biocontrol/k-guard.html" class="dropdown-item">K-Guard<div class="tooltip">Karanjin</div></a>
+                <a href="../products/biocontrol/margoshine.html" class="dropdown-item">Margoshine<div class="tooltip">Neem Oil</div></a>
+                <a href="../products/biocontrol/spindura.html" class="dropdown-item">Spindura<div class="tooltip">Spinosad</div></a>
+                <a href="../products/biocontrol/admira.html" class="dropdown-item">Admira<div class="tooltip">Neem Oil + Spinosad</div></a>
+                <a href="../products/biocontrol/weedx.html" class="dropdown-item">WeedX<div class="tooltip">MCT</div></a>
+                <a href="../products/biocontrol/weedx.html" class="dropdown-item">Mycova<div class="tooltip">MCT</div></a>
+                <a href="../products/biocontrol/weedx.html" class="dropdown-item">Rexora<div class="tooltip">MCT</div></a>
+                <a href="../products/biocontrol/weedx.html" class="dropdown-item">Biota (V)<div class="tooltip">MCT</div></a>
+                <a href="../products/biocontrol/weedx.html" class="dropdown-item">Biota (H)<div class="tooltip">MCT</div></a>
+                <a href="../products/biocontrol/weedx.html" class="dropdown-item">Seira<div class="tooltip">MCT</div></a>
+                <a href="../products/biocontrol/weedx.html" class="dropdown-item">EnCilo<div class="tooltip">MCT</div></a>
+                <a href="../products/biocontrol/weedx.html" class="dropdown-item">Neuvita<div class="tooltip">MCT</div></a>
+              </div>
+            </div>
+            <!-- Biostimulants -->
+            <div class="dropdown-column">
               <a href="../products/biostimulants.html" class="dropdown-category">Biostimulants</a>
+              <div class="dropdown-submenu">
+                <a href="products/biostimulants/igreen.html" class="dropdown-item">
+                                    IGreen
+                                    <div class="tooltip">Consortium of Bacteria</div>
+                                </a>
+                                <a href="products/biostimulants/zenita.html" class="dropdown-item">
+                                    Zenita
+                                    <div class="tooltip">Neem Limonoids based PGP</div>
+                                </a>
+                                <a href="products/biostimulants/cropsia.html" class="dropdown-item">
+                                    Cropsia
+                                    <div class="tooltip">Plant Extract based PGP</div>
+                                </a>
+                                <a href="products/biostimulants/enrhize.html" class="dropdown-item">
+                                    Enrhize
+                                    <div class="tooltip">Arbuscular Mycorrhizal</div>
+                                </a>
+                                <a href="products/biostimulants/orgocare.html" class="dropdown-item">
+                                    Orgocare
+                                    <div class="tooltip">Plant based Stress Management</div>
+                                </a>
+                                <a href="products/biostimulants/blooma.html" class="dropdown-item">
+                                    Blooma
+                                    <div class="tooltip">Seaweed based PGP</div>
+                                </a>
+                                <a href="products/biostimulants/envicta.html" class="dropdown-item">
+                                    Envicta
+                                    <div class="tooltip">Humic based PGP</div>
+                                </a>
+              </div>
+            </div>
+            <!-- Substrates -->
+            <div class="dropdown-column">
               <a href="../products/substrates.html" class="dropdown-category">Substrates</a>
+              <div class="dropdown-submenu">
+                <a href="products/substrates/maxineem.html" class="dropdown-item">
+                                    Maxineem
+                                    <div class="tooltip">Neem Cake</div>
+                                </a>
+                                <a href="products/substrates/kmix.html" class="dropdown-item">
+                                    K-Mix
+                                    <div class="tooltip">Karanja Cake</div>
+                                </a>
+                                <a href="products/substrates/mystica.html" class="dropdown-item">
+                                    Mystica
+                                    <div class="tooltip">Wetting & Spreading Agents</div>
+                                </a>
+                                <a href="products/substrates/engrow.html" class="dropdown-item">
+                                    Engrow
+                                    <div class="tooltip">Seed Coating</div>
+                                </a>
+              </div>
+            </div>
+            <!-- Home & Garden -->
+            <div class="dropdown-column">
               <a href="../products/home-garden.html" class="dropdown-category">Home & Garden</a>
             </div>
           </div>
@@ -594,19 +286,17 @@
           <a href="javascript:void(0)" class="nav-link dropdown-toggle" aria-expanded="false">
             Technology <span class="material-symbols-outlined">expand_more</span>
           </a>
-          <div class="dropdown-menu" role="menu" aria-label="Technology">
+          <div class="dropdown-menu" role="menu">
             <a href="../technology/karyo.html" class="dropdown-item">Karyo</a>
             <a href="../technology/wynn.html" class="dropdown-item">Wynn</a>
           </div>
         </div>
 
-        <div class="nav-item"><a href="contract-manufacturing.html" class="nav-link active">Contract Manufacturing</a></div>
+        <div class="nav-item"><a href="../contract-manufactoring/contract-manufactoring.html" class="nav-link active">Contract Manufacturing</a></div>
         <div class="nav-item"><a href="../contact/contact.html" class="nav-link">Contact</a></div>
       </div>
 
-      <div class="nav-toggle" id="nav-toggle">
-        <span class="material-symbols-outlined">menu</span>
-      </div>
+      <div class="nav-toggle" id="nav-toggle"><span class="material-symbols-outlined">menu</span></div>
     </div>
   </nav>
 
@@ -614,20 +304,16 @@
   <section class="breadcrumb">
     <div class="container">
       <div class="breadcrumb-links">
-        <a href="../index.html">Home</a>
-        <span>></span>
-        <span>Contract Manufacturing</span>
+        <a href="../index.html">Home</a> <span>></span> <span>Contract Manufacturing</span>
       </div>
     </div>
   </section>
 
-  <!-- Header -->
+  <!-- Page Header -->
   <section class="page-header">
     <div class="container">
       <h1 class="page-title">Contract Manufacturing</h1>
-      <p class="page-description">
-        Leverage our state-of-the-art facilities and expertise to bring your agricultural solutions to market.
-      </p>
+      <p class="page-description">Leverage our state-of-the-art facilities and expertise to bring your agricultural solutions to market.</p>
     </div>
   </section>
 
@@ -636,60 +322,24 @@
     <div class="container">
       <h2 class="section-title">Our Manufacturing Capabilities</h2>
       <div class="capabilities-grid">
-        <div class="capability-card">
-          <div class="capability-icon">🧪</div>
-          <h3>Botanical Extracts</h3>
-          <p>Advanced extraction and formulation of nature-derived active ingredients including neem, karanja, and other botanical sources.</p>
-        </div>
-        <div class="capability-card">
-          <div class="capability-icon">🦠</div>
-          <h3>Microbial Products</h3>
-          <p>State-of-the-art fermentation facilities for microbial insecticides, fungicides, and biostimulants.</p>
-        </div>
-        <div class="capability-card">
-          <div class="capability-icon">⚗️</div>
-          <h3>Custom Formulations</h3>
-          <p>Tailored solutions including WSP tablets, RTU sprays, liquid concentrates, and powder formulations.</p>
-        </div>
+        <div class="capability-card"><div class="capability-icon">🧪</div><h3>Botanical Extracts</h3><p>Advanced extraction and formulation of neem, karanja, and other botanical actives.</p></div>
+        <div class="capability-card"><div class="capability-icon">🦠</div><h3>Microbial Products</h3><p>Fermentation facilities for microbial insecticides, fungicides, and biostimulants.</p></div>
+        <div class="capability-card"><div class="capability-icon">⚗️</div><h3>Custom Formulations</h3><p>Tailored solutions including WSP, RTU sprays, concentrates, and powders.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- Manufacturing Process -->
+  <!-- Process -->
   <section class="process-section">
     <div class="container">
       <h2 class="section-title">Our Manufacturing Process</h2>
       <div class="process-steps">
-        <div class="process-step">
-          <div class="step-number">1</div>
-          <h3>Consultation & Planning</h3>
-          <p>We begin with understanding your specific requirements, target market, and regulatory needs.</p>
-        </div>
-        <div class="process-step">
-          <div class="step-number">2</div>
-          <h3>R&D & Formulation</h3>
-          <p>Our scientific team develops optimized formulations using our Karyo and Wynn technology platforms.</p>
-        </div>
-        <div class="process-step">
-          <div class="step-number">3</div>
-          <h3>Quality Testing</h3>
-          <p>Rigorous quality control and stability testing to ensure product efficacy and shelf life.</p>
-        </div>
-        <div class="process-step">
-          <div class="step-number">4</div>
-          <h3>Scale-up & Production</h3>
-          <p>Seamless transition from lab-scale to commercial production with consistent quality.</p>
-        </div>
-        <div class="process-step">
-          <div class="step-number">5</div>
-          <h3>Packaging & Logistics</h3>
-          <p>Custom packaging solutions and global logistics support for market delivery.</p>
-        </div>
-        <div class="process-step">
-          <div class="step-number">6</div>
-          <h3>Ongoing Support</h3>
-          <p>Continuous technical support, regulatory assistance, and product improvement.</p>
-        </div>
+        <div class="process-step"><div class="step-number">1</div><h3>Consultation</h3><p>Understanding your requirements & regulatory needs.</p></div>
+        <div class="process-step"><div class="step-number">2</div><h3>R&D & Formulation</h3><p>Optimized formulations using our technology platforms.</p></div>
+        <div class="process-step"><div class="step-number">3</div><h3>Quality Testing</h3><p>Rigorous quality and stability testing.</p></div>
+        <div class="process-step"><div class="step-number">4</div><h3>Scale-up</h3><p>From lab to commercial production.</p></div>
+        <div class="process-step"><div class="step-number">5</div><h3>Packaging</h3><p>Custom packaging & global logistics support.</p></div>
+        <div class="process-step"><div class="step-number">6</div><h3>Ongoing Support</h3><p>Technical and regulatory support.</p></div>
       </div>
     </div>
   </section>
@@ -700,19 +350,13 @@
       <div class="facilities-content">
         <div class="facilities-text">
           <h2>World-Class Manufacturing Facilities</h2>
-          <p>Our manufacturing units are equipped with state-of-the-art technology and adhere to international quality standards. We maintain separate production lines for botanical and microbial products to ensure product integrity.</p>
-          <p>With scalable production capabilities, we can handle projects of any size while maintaining the highest quality standards.</p>
+          <p>Equipped with state-of-the-art technology and international quality standards.</p>
           <ul class="facility-features">
-            <li>GMP-compliant manufacturing facilities</li>
-            <li>Advanced fermentation technology</li>
-            <li>Modern extraction and purification systems</li>
-            <li>Quality control laboratories</li>
-            <li>Environmentally sustainable processes</li>
-            <li>Global regulatory compliance expertise</li>
+            <li>GMP-compliant units</li><li>Advanced fermentation</li><li>Extraction & purification</li><li>QC laboratories</li><li>Sustainable processes</li>
           </ul>
         </div>
         <div class="facilities-image">
-          <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Modern manufacturing facility">
+          <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=800&q=80" alt="Facility">
         </div>
       </div>
     </div>
@@ -721,85 +365,60 @@
   <!-- CTA -->
   <section class="cta-section">
     <div class="container">
-      <div class="cta-content">
-        <h2 class="cta-title">Start Your Manufacturing Partnership</h2>
-        <p class="cta-description">Contact our manufacturing team to discuss your project requirements and discover how we can help bring your agricultural solutions to market.</p>
-        <a href="../contact/contact.html" class="btn btn-primary">Get Started Today</a>
-      </div>
+      <h2 class="cta-title">Start Your Manufacturing Partnership</h2>
+      <p class="cta-description">Contact our team to discuss your project requirements and discover how we can help bring your solutions to market.</p>
+      <a href="../contact/contact.html" class="btn btn-primary">Get Started Today</a>
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-disclaimer">
-        <p><strong>Usage Disclaimer:</strong> Always follow label instructions and dosage recommendations. Contact us for specific usage guidance.</p>
-      </div>
-
+      <div class="footer-disclaimer"><p><strong>Usage Disclaimer:</strong> Always follow label instructions and dosage recommendations.</p></div>
       <div class="footer-main">
-        <div class="footer-links">
-          <a href="../about/about.html">About</a>
-          <a href="../products/">Products</a>
-          <a href="../technology/">Technology</a>
-          <a href="../contact/contact.html">Contact</a>
-        </div>
-
-        <div class="footer-contact">
-          <a href="mailto:info@kriya.ltd">info@kriya.ltd</a>
-          <a href="https://wa.me/916385848466">+91 6385848466</a>
-        </div>
-
+        <div class="footer-links"><a href="../about/about.html">About</a><a href="../products/">Products</a><a href="../technology/">Technology</a><a href="../contact/contact.html">Contact</a></div>
+        <div class="footer-contact"><a href="mailto:info@kriya.ltd">info@kriya.ltd</a><a href="https://wa.me/916385848466">+91 6385848466</a></div>
         <div class="footer-social">
-          <a href="https://www.linkedin.com/company/108402158/" aria-label="LinkedIn">
-            <span class="material-symbols-outlined">group</span>
-          </a>
-          <a href="https://x.com/kriyabiosys" aria-label="Twitter">
-            <span class="material-symbols-outlined">sms</span>
-          </a>
-          <a href="https://www.instagram.com/kriyabiosys/" aria-label="Instagram">
-            <span class="material-symbols-outlined">photo_camera</span>
-          </a>
-          <a href="https://www.youtube.com/@kriyabiosys" aria-label="YouTube">
-            <span class="material-symbols-outlined">play_arrow</span>
-          </a>
-          <a href="https://www.facebook.com/kriyabiosys" aria-label="Facebook">
-            <span class="material-symbols-outlined">thumb_up</span>
-          </a>
+          <a href="https://www.linkedin.com/company/108402158/"><i class="fab fa-linkedin"></i></a>
+          <a href="https://x.com/kriyabiosys"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://www.instagram.com/kriyabiosys/"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.youtube.com/@kriyabiosys"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.facebook.com/kriyabiosys"><i class="fab fa-facebook"></i></a>
         </div>
       </div>
-
       <div class="footer-legal">
-        <div class="legal-links">
-          <a href="../privacy.html">Privacy Policy</a>
-          <a href="../responsible-use.html">Responsible Use</a>
-          <a href="../trademark.html">Trademark</a>
-        </div>
+        <div class="legal-links"><a href="../privacy.html">Privacy Policy</a><a href="../responsible-use.html">Responsible Use</a><a href="../trademark.html">Trademark</a></div>
         <div class="copyright">© Kriya Ltd 2025</div>
       </div>
     </div>
   </footer>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const navToggle = document.getElementById("nav-toggle");
-      const navMenu = document.getElementById("nav-menu");
-      
-      if (navToggle && navMenu) {
-        navToggle.addEventListener("click", () => {
-          navMenu.classList.toggle("active");
+  document.addEventListener("DOMContentLoaded", () => {
+    const navToggle=document.getElementById("nav-toggle");
+    const navMenu=document.getElementById("nav-menu");
+    if(navToggle && navMenu){navToggle.addEventListener("click",()=>{navMenu.classList.toggle("active");});}
+
+    // Dropdown toggle (click)
+    const dropdowns=document.querySelectorAll('.dropdown');
+    dropdowns.forEach(dropdown=>{
+      const toggle=dropdown.querySelector('.dropdown-toggle');
+      if(toggle){
+        toggle.addEventListener('click',function(e){
+          e.preventDefault();e.stopPropagation();
+          dropdowns.forEach(other=>{
+            if(other!==dropdown){other.classList.remove('active');}
+          });
+          dropdown.classList.toggle('active');
         });
       }
-
-      // Close dropdowns when clicking outside
-      document.addEventListener('click', (e) => {
-        if (!e.target.closest('.dropdown')) {
-          document.querySelectorAll('.dropdown-menu').forEach(menu => {
-            menu.style.opacity = '0';
-            menu.style.visibility = 'hidden';
-          });
-        }
-      });
     });
+    document.addEventListener('click',()=>{dropdowns.forEach(d=>d.classList.remove('active'));});
+    document.querySelectorAll('.dropdown-menu').forEach(menu=>{
+      menu.addEventListener('click',e=>e.stopPropagation());
+    });
+  });
   </script>
+
 </body>
 </html>

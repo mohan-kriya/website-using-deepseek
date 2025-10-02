@@ -12,6 +12,8 @@
 
   <!-- Material Symbols -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
     /* Reset and Base */
@@ -35,6 +37,7 @@
 
       --section-padding: 5rem 0;
       --container-max-width: 1200px;
+      --transition-normal: 0.3s ease;
     }
 
     body {
@@ -116,46 +119,123 @@
       cursor: pointer;
     }
 
+    /* Updated Dropdown Menu to match about.html */
     .dropdown-menu {
       position: absolute;
       top: 100%;
       left: 0;
       background: var(--white);
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
       border-radius: 8px;
-      padding: 1rem;
-      min-width: 200px;
+      padding: 0.5rem 0;
+      min-width: 220px;
       opacity: 0;
       visibility: hidden;
       transform: translateY(-10px);
-      transition: all 0.3s ease;
+      transition: all var(--transition-normal);
+      display: block;
       z-index: 1000;
     }
 
-    .dropdown:hover .dropdown-menu {
+    .dropdown.active .dropdown-menu {
       opacity: 1;
       visibility: visible;
       transform: translateY(0);
     }
 
-    .dropdown-column {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
+    /* Remove hover behavior for opening dropdown */
+    .dropdown:hover .dropdown-menu {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+    }
+    
+    .dropdown.active:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
     }
 
-    .dropdown-category,
+    /* Products dropdown columns */
+    #products-dropdown .dropdown-column {
+      border-bottom: 1px solid #eee;
+      padding: 0.5rem 1rem;
+    }
+
+    #products-dropdown .dropdown-column:last-child {
+      border-bottom: none;
+    }
+
+    #products-dropdown .dropdown-category {
+      display: block;
+      font-weight: 600;
+      color: var(--primary-green);
+      text-decoration: none;
+      padding: 0.25rem 0;
+    }
+
+    /* Submenu (product list under each category) */
+    #products-dropdown .dropdown-submenu {
+      display: none;
+      margin-top: 0.5rem;
+      margin-left: 1rem;
+    }
+
+    /* Desktop: show submenu on hover */
+    @media (hover: hover) and (pointer: fine) {
+      #products-dropdown .dropdown-column:hover .dropdown-submenu {
+        display: block;
+      }
+    }
+
     .dropdown-item {
       color: var(--dark-gray);
       text-decoration: none;
-      padding: 0.5rem 0;
+      padding: 0.25rem 0;
       transition: color 0.2s;
       display: block;
+      position: relative;
     }
 
-    .dropdown-category:hover,
     .dropdown-item:hover {
       color: var(--secondary-orange);
+    }
+
+    /* Tooltip Styles */
+    .dropdown-item .tooltip {
+      visibility: hidden;
+      background-color: var(--primary-green);
+      color: var(--white);
+      text-align: center;
+      border-radius: 4px;
+      padding: 8px 12px;
+      position: absolute;
+      z-index: 1000;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-size: 0.8rem;
+      white-space: nowrap;
+      margin-bottom: 5px;
+      min-width: 120px;
+    }
+    
+    .dropdown-item .tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: var(--primary-green) transparent transparent transparent;
+    }
+    
+    .dropdown-item:hover .tooltip {
+      visibility: visible;
+      opacity: 1;
     }
 
     .nav-toggle {
@@ -457,7 +537,8 @@
     .footer-social a {
       color: var(--white);
       text-decoration: none;
-      transition: 0.2s;
+      transition: var(--transition-normal);
+      font-size: 1.5rem;
     }
 
     .footer-social a:hover {
@@ -526,7 +607,16 @@
         transform: none;
         box-shadow: none;
         padding: 1rem 0 0 1rem;
+        display: none;
       }
+
+      .dropdown.active .dropdown-menu {
+        display: block;
+      }
+
+      /* Mobile: reveal products when a column gets .open */
+      #products-dropdown .dropdown-submenu { display: none; }
+      #products-dropdown .dropdown-column.open .dropdown-submenu { display: block; }
 
       .nav-toggle {
         display: block;
@@ -565,16 +655,131 @@
         <div class="nav-item"><a href="../index.html" class="nav-link">Home</a></div>
         <div class="nav-item"><a href="../about/about.html" class="nav-link">About</a></div>
 
-        <!-- Products Dropdown -->
+        <!-- Products Dropdown - Updated to match about.html -->
         <div class="nav-item dropdown" id="products-dropdown">
           <a href="javascript:void(0)" class="nav-link dropdown-toggle" aria-expanded="false">
             Products <span class="material-symbols-outlined">expand_more</span>
           </a>
           <div class="dropdown-menu" role="menu" aria-label="Products">
+            <!-- Biocontrol Column -->
             <div class="dropdown-column">
               <a href="../products/biocontrol.html" class="dropdown-category">Biocontrol</a>
+              <div class="dropdown-submenu">
+                <a href="../products/biocontrol/ecoza.html" class="dropdown-item">
+                  Ecoza
+                  <div class="tooltip">Azadirachtin</div>
+                </a>
+                <a href="../products/biocontrol/k-guard.html" class="dropdown-item">
+                  K-Guard
+                  <div class="tooltip">Karanjin</div>
+                </a>
+                <a href="../products/biocontrol/margoshine.html" class="dropdown-item">
+                  Margoshine
+                  <div class="tooltip">Neem Oil</div>
+                </a>
+                <a href="../products/biocontrol/spindura.html" class="dropdown-item">
+                  Spindura
+                  <div class="tooltip">Spinosad</div>
+                </a>
+                <a href="../products/biocontrol/admira.html" class="dropdown-item">
+                  Admira
+                  <div class="tooltip">Neem Oil + Spinosad</div>
+                </a>
+                <a href="../products/biocontrol/weedx.html" class="dropdown-item">
+                  WeedX
+                  <div class="tooltip">MCT</div>
+                </a>
+                <a href="../products/biocontrol/mycova.html" class="dropdown-item">
+                  Mycova
+                  <div class="tooltip">Beauveria bassiana</div>
+                </a>
+                <a href="../products/biocontrol/rexora.html" class="dropdown-item">
+                  Rexora
+                  <div class="tooltip">Metarhizium anisopliae</div>
+                </a>
+                <a href="../products/biocontrol/biota-v.html" class="dropdown-item">
+                  Biota (V)
+                  <div class="tooltip">Trichoderma viride</div>
+                </a>
+                <a href="../products/biocontrol/biota-h.html" class="dropdown-item">
+                  Biota (H)
+                  <div class="tooltip">Trichoderma viride</div>
+                </a>
+                <a href="../products/biocontrol/seira.html" class="dropdown-item">
+                  Seira
+                  <div class="tooltip">Verticillium lecanii</div>
+                </a>
+                <a href="../products/biocontrol/encilo.html" class="dropdown-item">
+                  EnCilo
+                  <div class="tooltip">Paecilomyces lilacinus</div>
+                </a>
+                <a href="../products/biocontrol/neuvita.html" class="dropdown-item">
+                  Neuvita
+                  <div class="tooltip">Ampelomyces quisqualis</div>
+                </a>
+              </div>
+            </div>
+            
+            <!-- Biostimulants Column -->
+            <div class="dropdown-column">
               <a href="../products/biostimulants.html" class="dropdown-category">Biostimulants</a>
+              <div class="dropdown-submenu">
+                <a href="../products/biostimulants/igreen.html" class="dropdown-item">
+                  IGreen
+                  <div class="tooltip">Consortium of Bacteria</div>
+                </a>
+                <a href="../products/biostimulants/zenita.html" class="dropdown-item">
+                  Zenita
+                  <div class="tooltip">Neem Limonoids based PGP</div>
+                </a>
+                <a href="../products/biostimulants/cropsia.html" class="dropdown-item">
+                  Cropsia
+                  <div class="tooltip">Plant Extract based PGP</div>
+                </a>
+                <a href="../products/biostimulants/enrhize.html" class="dropdown-item">
+                  Enrhize
+                  <div class="tooltip">Arbuscular Mycorrhizal</div>
+                </a>
+                <a href="../products/biostimulants/orgocare.html" class="dropdown-item">
+                  Orgocare
+                  <div class="tooltip">Plant based Stress Management</div>
+                </a>
+                <a href="../products/biostimulants/blooma.html" class="dropdown-item">
+                  Blooma
+                  <div class="tooltip">Seaweed based PGP</div>
+                </a>
+                <a href="../products/biostimulants/envicta.html" class="dropdown-item">
+                  Envicta
+                  <div class="tooltip">Humic based PGP</div>
+                </a>
+              </div>
+            </div>
+            
+            <!-- Substrates Column -->
+            <div class="dropdown-column">
               <a href="../products/substrates.html" class="dropdown-category">Substrates</a>
+              <div class="dropdown-submenu">
+                <a href="../products/substrates/maxineem.html" class="dropdown-item">
+                  Maxineem
+                  <div class="tooltip">Neem Cake</div>
+                </a>
+                <a href="../products/substrates/kmix.html" class="dropdown-item">
+                  K-Mix
+                  <div class="tooltip">Karanja Cake</div>
+                </a>
+                <a href="../products/substrates/mystica.html" class="dropdown-item">
+                  Mystica
+                  <div class="tooltip">Wetting & Spreading Agents</div>
+                </a>
+                <a href="../products/substrates/engrow.html" class="dropdown-item">
+                  Engrow
+                  <div class="tooltip">Seed Coating</div>
+                </a>
+              </div>
+            </div>
+            
+            <!-- Home & Garden Column -->
+            <div class="dropdown-column">
               <a href="../products/home-garden.html" class="dropdown-category">Home & Garden</a>
             </div>
           </div>
@@ -772,19 +977,19 @@
 
         <div class="footer-social">
           <a href="https://www.linkedin.com/company/108402158/" aria-label="LinkedIn">
-            <span class="material-symbols-outlined">group</span>
+            <i class="fab fa-linkedin"></i>
           </a>
-          <a href="https://x.com/kriyabiosys" aria-label="Twitter">
-            <span class="material-symbols-outlined">sms</span>
+          <a href="https://x.com/kriyabiosys" aria-label="X">
+            <i class="fa-brands fa-x-twitter"></i>
           </a>
           <a href="https://www.instagram.com/kriyabiosys/" aria-label="Instagram">
-            <span class="material-symbols-outlined">photo_camera</span>
+            <i class="fab fa-instagram"></i>
           </a>
           <a href="https://www.youtube.com/@kriyabiosys" aria-label="YouTube">
-            <span class="material-symbols-outlined">play_arrow</span>
+            <i class="fab fa-youtube"></i>
           </a>
           <a href="https://www.facebook.com/kriyabiosys" aria-label="Facebook">
-            <span class="material-symbols-outlined">thumb_up</span>
+            <i class="fab fa-facebook"></i>
           </a>
         </div>
       </div>
@@ -811,6 +1016,50 @@
         });
       }
 
+      // Click to toggle dropdowns (desktop & mobile) - Same as about.html
+      const dropdowns = document.querySelectorAll('.dropdown');
+      
+      dropdowns.forEach(dropdown => {
+        const toggle = dropdown.querySelector('.dropdown-toggle');
+        
+        if (toggle) {
+          toggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Close other dropdowns
+            dropdowns.forEach(otherDropdown => {
+              if (otherDropdown !== dropdown) {
+                otherDropdown.classList.remove('active');
+                const t = otherDropdown.querySelector('.dropdown-toggle');
+                if (t) t.setAttribute('aria-expanded', 'false');
+              }
+            });
+            
+            // Toggle current dropdown
+            const isActive = dropdown.classList.toggle('active');
+            toggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+          });
+        }
+      });
+
+      // Close dropdowns when clicking outside
+      document.addEventListener('click', function() {
+        dropdowns.forEach(dropdown => {
+          dropdown.classList.remove('active');
+          const t = dropdown.querySelector('.dropdown-toggle');
+          if (t) t.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      // Prevent dropdown from closing when clicking inside
+      document.querySelectorAll('.dropdown-menu').forEach(menu => {
+        menu.addEventListener('click', function(e) {
+          e.stopPropagation();
+        });
+      });
+
+      // Contact form submission
       const contactForm = document.getElementById("contactForm");
       if (contactForm) {
         contactForm.addEventListener("submit", (e) => {
@@ -819,16 +1068,6 @@
           contactForm.reset();
         });
       }
-
-      // Close dropdowns when clicking outside
-      document.addEventListener('click', (e) => {
-        if (!e.target.closest('.dropdown')) {
-          document.querySelectorAll('.dropdown-menu').forEach(menu => {
-            menu.style.opacity = '0';
-            menu.style.visibility = 'hidden';
-          });
-        }
-      });
     });
   </script>
 </body>

@@ -542,7 +542,7 @@ h4 { font-size: 1.4rem; }
     gap: 1rem;
 }
 
-.footer-social a {
+ /*.footer-social a {
     color: var(--white);
     text-decoration: none;
     transition: var(--transition-fast);
@@ -551,6 +551,17 @@ h4 { font-size: 1.4rem; }
 .footer-social a:hover {
     color: var(--accent-gold);
     transform: translateY(-2px);
+}
+*/
+.footer-social a {
+  margin: 0 8px;
+  font-size: 24px;
+  color: #2A4E35; /* brand green */
+  transition: color 0.3s;
+}
+
+.footer-social a:hover {
+  color: #EA6E26; /* brand orange */
 }
 
 .footer-legal {
